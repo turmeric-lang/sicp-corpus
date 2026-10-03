@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '17 9 * * *'   # daily, to catch a Turmeric change that breaks the book
+  workflow_dispatch:
+
+jobs:
+  corpus:
+    name: corpus (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - name: Checkout sicp-corpus
+        uses: actions/checkout@v4
+        with:
+          path: sicp-corpus
+
+      - name: Checkout turmeric (main)
+        uses: actions/checkout@v4
+        with:
+          repository: turmeric-lang/turmeric
+          ref: main
+          path: turmeric
+
+      # Two runs hours apart build different compilers; say which one this is.
+      - name: Turmeric sha
+        working-directory: turmeric
+        run: echo "::notice title=turmeric::built turmeric-lang/turmeric@$(git rev-parse HEAD)"
+
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libedit-dev cmake
+
+      - name: Install dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: brew install libedit cmake || true
+
+      # Release: the corpus checks answers, not the compiler's own memory
+      # safety, and a Release tur builds the corpus several times faster.
+      - name: Build tur
+        working-directory: turmeric
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+          cmake --build build -j
+
+      - name: Run the corpus
+        working-directory: sicp-corpus
+        env:
+          TUR: ${{ github.workspace }}/turmeric/build/tur
+          TUR_STDLIB_DIR: ${{ github.workspace }}/turmeric/stdlib
+        run: bash run.sh
