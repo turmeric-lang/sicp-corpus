@@ -2,7 +2,7 @@
 ;; Code and stated results from Structure and Interpretation of Computer
 ;; Programs, 2nd ed., by Harold Abelson and Gerald Jay Sussman with Julie
 ;; Sussman (MIT Press), CC BY-SA 4.0. See ../NOTICE.
-(import (scheme base) (scheme write) (corpus prelude))
+(import (scheme base) (scheme write) (srfi 216))
 
 (define (show x) (display x) (newline))
 

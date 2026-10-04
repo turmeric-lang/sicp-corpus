@@ -36,11 +36,17 @@ failure.
   holds the book's own answers. Each `.expected` value is checked against
   the book by hand when it is added; never regenerate one blindly from
   `tur` output.
-- `corpus/prelude.scm` -- `(corpus prelude)`: the names SICP assumes from MIT
-  Scheme (`true`, `false`, `nil`, `runtime`, `random`, `cons-stream`,
-  `the-empty-stream`, `stream-null?`). It is replaced by
-  `(import (srfi 216))` once Turmeric ships SRFI 216, and by
-  `(sicp extras)` for `inc`/`dec`/`identity`/`amb`.
+- `(import (srfi 216))` -- the names SICP assumes from MIT Scheme (`true`,
+  `false`, `nil`, `runtime`, `random`, `cons-stream`, `the-empty-stream`,
+  `stream-null?`, `parallel-execute`, `test-and-set!`), which Turmeric
+  ships as SRFI 216. The `#lang sicp` extras (`inc`, `dec`, `identity`,
+  `amb`) come from `(sicp extras)` once that is in Turmeric `main`.
+- Where the book redefines a procedure, the program does too, as printed.
+  Where running the text needs something the book leaves to an exercise
+  (an `or-gate`, `partial-sums`), that part is left out and the file's
+  header says so; where it needs something the book leaves to the reader
+  (more primitive procedures for the evaluator, a `rand-update`), it is
+  supplied and marked "not the book's".
 - `<section>.xfail` -- the program is blocked on an open Turmeric report; the
   first line names it. A mismatch passes as xfail, and a match fails with
   "delete the marker", so the day the fix lands the marker comes out.
@@ -60,9 +66,25 @@ different compilers, so compare the sha before blaming a change here.
 | Section | Status |
 |---|---|
 | 1.1 The Elements of Programming | passing |
+| 1.2 Procedures and the Processes They Generate | passing |
+| 1.3 Formulating Abstractions with Higher-Order Procedures | passing |
+| 2.1 Introduction to Data Abstraction | xfail on Turmeric `main`: redefinition |
+| 2.2 Hierarchical Data (2.2.1-2.2.3) | xfail on Turmeric `main`: redefinition |
+| 2.3 Symbolic Data | xfail on Turmeric `main`: redefinition |
+| 3.1 Assignment and Local State | xfail on Turmeric `main`: redefinition |
+| 3.3 Modeling with Mutable Data | xfail on Turmeric `main`: redefinition, `eq?` on internal procedures |
+| 3.4 Concurrency | passing (invariants, not exact output) |
+| 3.5 Streams | xfail on Turmeric `main`: redefinition |
+| 4.1 The Metacircular Evaluator (4.1.1-4.1.4), as printed | passing |
 
-Priorities, from the plan: chapters 1-3 and 3.5 streams; then 4.1 (the
-metacircular evaluator, which needs a Turmeric fix and will land as xfail);
-then 4.3 `amb`, 4.4 the query system, 5.2 the register-machine simulator and
-5.5 the compiler; 3.4 concurrency once SRFI 18 lands. The picture language
-of 2.2.4 is out of scope.
+"Redefinition" is
+[r7rs-program-redefinition-refused](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-program-redefinition-refused.md):
+SICP refines procedures by defining them again, which Turmeric `main`
+refuses. The fix, and the one for `eq?`, are on a Turmeric branch; once they
+reach `main` these runs fail with "delete the marker", which is the cue to
+delete the `.xfail` files.
+
+Next, from the plan: 4.1.5-4.1.7 (the analyzing evaluator), 4.2, 4.3 `amb`
+(with `(sicp extras)` once it is on `main`), 4.4 the query system, 5.2 the
+register-machine simulator and 5.5 the compiler. The picture language of
+2.2.4 is out of scope.

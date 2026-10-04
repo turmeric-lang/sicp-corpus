@@ -10,8 +10,9 @@ including the HTML edition at https://github.com/sarabander/sicp.
 
 Changes: the book's code is split into one program per section, each
 expression whose value the book states is wrapped so the program prints it,
-and the definitions the book assumes from MIT Scheme are supplied by
-corpus/prelude.scm.
+and the definitions the book assumes from MIT Scheme come from SRFI 216
+("SICP Prerequisites"). Where a section needs something the book leaves to
+an exercise or to the reader, the program says so at that point.
 
 This repository as a whole is distributed under the same license; see
 LICENSE.
