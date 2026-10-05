@@ -10,10 +10,12 @@
 ;; Supplied from elsewhere in the book: cons-stream, true and false (SRFI
 ;; 216), 3.5's stream-car, stream-cdr, stream-map, display-stream and
 ;; stream-append, 3.3.3's put and get, 4.1's tagged-list? and
-;; prompt-for-input, and an eval environment for lisp-value.  The data base is loaded before the session, last assertion
-;; first, so that each stream of assertions comes out in the order the book
-;; lists them -- the order of the results it prints.  Queries the book shows
-;; looping forever (4.4.3's married rule) are left out, as is exercise code.
+;; prompt-for-input, and an eval environment for lisp-value.  The data base
+;; is loaded before the session, last assertion first, so that each stream
+;; of assertions comes out in the order the book lists them -- the order of
+;; the results it prints.  4.4.3's married rule, which the book shows
+;; looping forever, is left out (its assertion is kept), as is exercise
+;; code.
 (import (scheme base) (scheme write) (scheme read) (scheme cxr)
         (scheme eval) (srfi 216))
 
