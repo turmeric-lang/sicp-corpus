@@ -168,8 +168,9 @@
           (try next))))
   (try first-guess))
 ;; The book prints .7390822985224023.  The last digit depends on the C
-;; library's cos (glibc's, like Racket's, gives ...024), not on the code.
-(show (fixed-point cos 1.0))
+;; library's cos (macOS's gives ...023, glibc's, like Racket's, ...024), so
+;; this prints whether the answer is the book's to within that digit.
+(show (< (abs (- (fixed-point cos 1.0) .7390822985224023)) 1e-15))
 (show (fixed-point (lambda (y) (+ (sin y) (cos y)))
                    1.0))                        ; 1.2587315962971173
 
