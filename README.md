@@ -70,33 +70,30 @@ different compilers, so compare the sha before blaming a change here.
 | 1.1 The Elements of Programming | passing |
 | 1.2 Procedures and the Processes They Generate | passing |
 | 1.3 Formulating Abstractions with Higher-Order Procedures | passing |
-| 2.1 Introduction to Data Abstraction | xfail on Turmeric `main`: redefinition |
-| 2.2 Hierarchical Data (2.2.1-2.2.3) | xfail on Turmeric `main`: redefinition |
-| 2.3 Symbolic Data | xfail on Turmeric `main`: redefinition |
-| 3.1 Assignment and Local State | xfail on Turmeric `main`: redefinition |
-| 3.3 Modeling with Mutable Data | xfail on Turmeric `main`: redefinition, `eq?` on internal procedures |
+| 2.1 Introduction to Data Abstraction | passing |
+| 2.2 Hierarchical Data (2.2.1-2.2.3) | passing |
+| 2.3 Symbolic Data | passing |
+| 3.1 Assignment and Local State | passing |
+| 3.3 Modeling with Mutable Data | passing |
 | 3.4 Concurrency | passing (invariants, not exact output) |
-| 3.5 Streams | xfail on Turmeric `main`: redefinition |
-| 4.1 The Metacircular Evaluator (4.1.1-4.1.7, with the analyzing evaluator) | xfail on Turmeric `main`: redefinition |
-| 4.2 Lazy Evaluation (the lazy evaluator, 4.2.3's lazy lists) | xfail on Turmeric `main`: redefinition |
-| 4.3 Nondeterministic Computing (the `amb` evaluator and its examples) | compiled: passing; interpreted: xfail on Turmeric `main`, proper tail calls |
+| 3.5 Streams | passing |
+| 4.1 The Metacircular Evaluator (4.1.1-4.1.7, with the analyzing evaluator) | passing |
+| 4.2 Lazy Evaluation (the lazy evaluator, 4.2.3's lazy lists) | passing |
+| 4.3 Nondeterministic Computing (the `amb` evaluator and its examples) | passing |
 | 4.4 Logic Programming (the query system on the Microshaft data base) | passing |
-| 5.2 A Register-Machine Simulator (with 5.1's gcd, factorial and Fibonacci machines) | xfail on Turmeric `main`: redefinition |
+| 5.2 A Register-Machine Simulator (with 5.1's gcd, factorial and Fibonacci machines) | passing |
 | 5.5 Compilation (the compiler, on 5.4's explicit-control evaluator) | passing |
 
-"Redefinition" is
-[r7rs-program-redefinition-refused](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-program-redefinition-refused.md):
-SICP refines procedures by defining them again, which Turmeric `main`
-refuses. "Proper tail calls" is the `amb` evaluator's continuation-passing
-style, which grew the stack until it overflowed: through procedure values
-under the interpreter
-([report](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/turi-tail-call-through-procedure-value-grows-stack.md)),
-and through a call to a top-level procedure when compiled
-([report](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-tail-call-through-static-call-not-proper.md)).
-Compiled, `main`'s 1 GiB program stack gives 4.3 room without the second fix.
-The fixes, and the one for `eq?`, are on a Turmeric branch; once they
-reach `main` these runs fail with "delete the marker", which is the cue to
-delete the `.xfail` files.
+Writing the corpus found Turmeric defects, each fixed on `main`
+([turmeric#1091](https://github.com/turmeric-lang/turmeric/pull/1091)):
+[redefinition](https://github.com/turmeric-lang/turmeric/blob/main/docs/archive/r7rs-program-redefinition-refused.md)
+(SICP refines procedures by defining them again),
+[`eq?` on internal procedures](https://github.com/turmeric-lang/turmeric/blob/main/docs/archive/r7rs-internal-procedure-value-not-eq.md)
+(3.3.5's constraints), and proper tail calls for the `amb` evaluator's
+continuation-passing style, both
+[under the interpreter](https://github.com/turmeric-lang/turmeric/blob/main/docs/archive/turi-tail-call-through-procedure-value-grows-stack.md)
+and [compiled](https://github.com/turmeric-lang/turmeric/blob/main/docs/archive/r7rs-tail-call-through-static-call-not-proper.md).
+A section blocked on a new defect gets a `.xfail` marker naming its report.
 
 Each chapter-4 evaluator runs its own driver loop on the book's sessions,
 fed from a string in the program through `current-input-port`.
