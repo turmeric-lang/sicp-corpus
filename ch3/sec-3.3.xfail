@@ -1,3 +1,0 @@
-r7rs-program-redefinition-refused and r7rs-internal-procedure-value-not-eq: refused on Turmeric main, and the constraint system needs eq? on internal procedures; both fixed on branch claude/r7rs-srfi-plan-execution-n85j1j
-https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-program-redefinition-refused.md
-https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-internal-procedure-value-not-eq.md
