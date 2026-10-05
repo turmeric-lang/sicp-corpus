@@ -1,0 +1,154 @@
+
+
+;;; Query input:
+
+;;; Query results:
+(job (Hacker Alyssa P) (computer programmer))
+(job (Fect Cy D) (computer programmer))
+
+;;; Query input:
+
+;;; Query results:
+(address (Bitdiddle Ben) (Slumerville (Ridge Road) 10))
+(address (Hacker Alyssa P) (Cambridge (Mass Ave) 78))
+(address (Fect Cy D) (Cambridge (Ames Street) 3))
+(address (Tweakit Lem E) (Boston (Bay State Road) 22))
+(address (Reasoner Louis) (Slumerville (Pine Tree Road) 80))
+(address (Warbucks Oliver) (Swellesley (Top Heap Road)))
+(address (Scrooge Eben) (Weston (Shady Lane) 10))
+(address (Cratchet Robert) (Allston (N Harvard Street) 16))
+(address (Aull DeWitt) (Slumerville (Onion Square) 5))
+
+;;; Query input:
+
+;;; Query results:
+
+;;; Query input:
+
+;;; Query results:
+(job (Bitdiddle Ben) (computer wizard))
+(job (Hacker Alyssa P) (computer programmer))
+(job (Fect Cy D) (computer programmer))
+(job (Tweakit Lem E) (computer technician))
+
+;;; Query input:
+
+;;; Query results:
+(job (Bitdiddle Ben) (computer wizard))
+(job (Hacker Alyssa P) (computer programmer))
+(job (Fect Cy D) (computer programmer))
+(job (Tweakit Lem E) (computer technician))
+(job (Reasoner Louis) (computer programmer trainee))
+
+;;; Query input:
+
+;;; Query results:
+(and (job (Hacker Alyssa P) (computer programmer)) (address (Hacker Alyssa P) (Cambridge (Mass Ave) 78)))
+(and (job (Fect Cy D) (computer programmer)) (address (Fect Cy D) (Cambridge (Ames Street) 3)))
+
+;;; Query input:
+
+;;; Query results:
+(or (supervisor (Hacker Alyssa P) (Bitdiddle Ben)) (supervisor (Hacker Alyssa P) (Hacker Alyssa P)))
+(or (supervisor (Reasoner Louis) (Bitdiddle Ben)) (supervisor (Reasoner Louis) (Hacker Alyssa P)))
+(or (supervisor (Fect Cy D) (Bitdiddle Ben)) (supervisor (Fect Cy D) (Hacker Alyssa P)))
+(or (supervisor (Tweakit Lem E) (Bitdiddle Ben)) (supervisor (Tweakit Lem E) (Hacker Alyssa P)))
+
+;;; Query input:
+
+;;; Query results:
+(and (supervisor (Tweakit Lem E) (Bitdiddle Ben)) (not (job (Tweakit Lem E) (computer programmer))))
+
+;;; Query input:
+
+;;; Query results:
+(and (salary (Bitdiddle Ben) 60000) (lisp-value > 60000 30000))
+(and (salary (Hacker Alyssa P) 40000) (lisp-value > 40000 30000))
+(and (salary (Fect Cy D) 35000) (lisp-value > 35000 30000))
+(and (salary (Warbucks Oliver) 150000) (lisp-value > 150000 30000))
+(and (salary (Scrooge Eben) 75000) (lisp-value > 75000 30000))
+
+;;; Query input:
+
+;;; Query results:
+(lives-near (Reasoner Louis) (Bitdiddle Ben))
+(lives-near (Aull DeWitt) (Bitdiddle Ben))
+
+;;; Query input:
+
+;;; Query results:
+
+;;; Query input:
+
+;;; Query results:
+(outranked-by (Reasoner Louis) (Hacker Alyssa P))
+(outranked-by (Reasoner Louis) (Bitdiddle Ben))
+(outranked-by (Reasoner Louis) (Warbucks Oliver))
+
+;;; Query input:
+
+;;; Query results:
+(append-to-form (a b) (c d) (a b c d))
+
+;;; Query input:
+
+;;; Query results:
+(append-to-form (a b) (c d) (a b c d))
+
+;;; Query input:
+
+;;; Query results:
+(append-to-form () (a b c d) (a b c d))
+(append-to-form (a) (b c d) (a b c d))
+(append-to-form (a b) (c d) (a b c d))
+(append-to-form (a b c) (d) (a b c d))
+(append-to-form (a b c d) () (a b c d))
+
+;;; Query input:
+
+;;; Query results:
+(and (can-do-job (computer programmer) (computer programmer trainee)) (job (Hacker Alyssa P) (computer programmer)))
+(and (can-do-job (computer programmer) (computer programmer trainee)) (job (Fect Cy D) (computer programmer)))
+
+;;; Query input:
+
+;;; Query results:
+(and (job (Hacker Alyssa P) (computer programmer)) (supervisor (Hacker Alyssa P) (Bitdiddle Ben)))
+(and (job (Fect Cy D) (computer programmer)) (supervisor (Fect Cy D) (Bitdiddle Ben)))
+
+;;; Query input:
+
+;;; Query results:
+(and (supervisor (Hacker Alyssa P) (Bitdiddle Ben)) (job (Hacker Alyssa P) (computer programmer)))
+(and (supervisor (Fect Cy D) (Bitdiddle Ben)) (job (Fect Cy D) (computer programmer)))
+
+;;; Query input:
+
+Assertion added to data base.
+
+;;; Query input:
+
+;;; Query results:
+
+;;; Query input:
+
+;;; Query results:
+(married Minnie Mickey)
+
+;;; Query input:
+
+;;; Query results:
+(and (supervisor (Tweakit Lem E) (Bitdiddle Ben)) (not (job (Tweakit Lem E) (computer programmer))))
+(and (supervisor (Reasoner Louis) (Hacker Alyssa P)) (not (job (Reasoner Louis) (computer programmer))))
+(and (supervisor (Bitdiddle Ben) (Warbucks Oliver)) (not (job (Bitdiddle Ben) (computer programmer))))
+(and (supervisor (Scrooge Eben) (Warbucks Oliver)) (not (job (Scrooge Eben) (computer programmer))))
+(and (supervisor (Cratchet Robert) (Scrooge Eben)) (not (job (Cratchet Robert) (computer programmer))))
+(and (supervisor (Aull DeWitt) (Warbucks Oliver)) (not (job (Aull DeWitt) (computer programmer))))
+
+;;; Query input:
+
+;;; Query results:
+
+;;; Query input:
+
+;;; end of input
