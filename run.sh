@@ -16,6 +16,9 @@
 # timeout counts as a mismatch for an xfail program, since that is usually
 # what the blocking bug looks like.
 #
+# `<name>.xfail-compiled` / `<name>.xfail-interpreted` do the same for one
+# back end only, when the blocking report is that back end's.
+#
 # `<name>.compiled-only` / `<name>.interp-only` skip the other back end; the
 # first line says why.
 set -u
@@ -65,12 +68,15 @@ for scm in $(find . -name '*.scm' -not -path './corpus/*' | sort); do
             matched=0
         fi
         label="$rel ($mode)"
-        if [ -f "$base.xfail" ]; then
+        marker=""
+        if [ -f "$base.xfail-$mode" ]; then marker="$base.xfail-$mode"
+        elif [ -f "$base.xfail" ]; then marker="$base.xfail"; fi
+        if [ -n "$marker" ]; then
             if [ $matched -eq 1 ]; then
-                echo "FAIL $label -- passes now; delete $base.xfail ($(head -1 "$base.xfail"))"
+                echo "FAIL $label -- passes now; delete $marker ($(head -1 "$marker"))"
                 fail=$((fail + 1)); failed+=("$label")
             else
-                echo "PASS $label (xfail: $(head -1 "$base.xfail"))"
+                echo "PASS $label (xfail: $(head -1 "$marker"))"
                 xfail=$((xfail + 1))
             fi
         elif [ $matched -eq 1 ]; then
