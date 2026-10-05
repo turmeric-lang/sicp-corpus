@@ -1,0 +1,228 @@
+
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+(3 20)
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(3 110)
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(8 35)
+
+;;; Amb-Eval input:
+
+;;; There are no more values of
+(prime-sum-pair (quote (1 3 5 8)) (quote (20 35 110)))
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+(30 11)
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+(1 a)
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(1 b)
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(2 a)
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(2 b)
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(3 a)
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(3 b)
+
+;;; Amb-Eval input:
+
+;;; There are no more values of
+(list (amb 1 2 3) (amb (quote a) (quote b)))
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+((baker 3) (cooper 2) (fletcher 4) (miller 5) (smith 1))
+
+;;; Amb-Eval input:
+
+;;; There are no more values of
+(multiple-dwelling)
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+(sentence (noun-phrase (article the) (noun cat)) (verb eats))
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+ok
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+(sentence (noun-phrase (simple-noun-phrase (article the) (noun student)) (prep-phrase (prep with) (simple-noun-phrase (article the) (noun cat)))) (verb-phrase (verb sleeps) (prep-phrase (prep in) (simple-noun-phrase (article the) (noun class)))))
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; Amb-Eval value:
+(sentence (simple-noun-phrase (article the) (noun professor)) (verb-phrase (verb-phrase (verb lectures) (prep-phrase (prep to) (simple-noun-phrase (article the) (noun student)))) (prep-phrase (prep with) (simple-noun-phrase (article the) (noun cat)))))
+
+;;; Amb-Eval input:
+
+;;; Amb-Eval value:
+(sentence (simple-noun-phrase (article the) (noun professor)) (verb-phrase (verb lectures) (prep-phrase (prep to) (noun-phrase (simple-noun-phrase (article the) (noun student)) (prep-phrase (prep with) (simple-noun-phrase (article the) (noun cat)))))))
+
+;;; Amb-Eval input:
+
+;;; There are no more values of
+(parse (quote (the professor lectures to the student with the cat)))
+
+;;; Amb-Eval input:
+
+;;; Starting a new problem 
+;;; end of input

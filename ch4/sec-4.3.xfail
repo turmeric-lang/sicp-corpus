@@ -1,0 +1,5 @@
+r7rs-program-redefinition-refused: a second top-level define of a name is refused on Turmeric main; fixed on branch claude/r7rs-srfi-plan-execution-n85j1j
+https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-program-redefinition-refused.md
+Also needs proper tail calls through procedure values (interpreter) and through a static call (compiled), fixed on the same branch:
+https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/turi-tail-call-through-procedure-value-grows-stack.md
+https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-tail-call-through-static-call-not-proper.md

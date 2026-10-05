@@ -75,16 +75,26 @@ different compilers, so compare the sha before blaming a change here.
 | 3.3 Modeling with Mutable Data | xfail on Turmeric `main`: redefinition, `eq?` on internal procedures |
 | 3.4 Concurrency | passing (invariants, not exact output) |
 | 3.5 Streams | xfail on Turmeric `main`: redefinition |
-| 4.1 The Metacircular Evaluator (4.1.1-4.1.4), as printed | passing |
+| 4.1 The Metacircular Evaluator (4.1.1-4.1.7, with the analyzing evaluator) | xfail on Turmeric `main`: redefinition |
+| 4.2 Lazy Evaluation (the lazy evaluator, 4.2.3's lazy lists) | xfail on Turmeric `main`: redefinition |
+| 4.3 Nondeterministic Computing (the `amb` evaluator and its examples) | xfail on Turmeric `main`: redefinition, proper tail calls |
 
 "Redefinition" is
 [r7rs-program-redefinition-refused](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-program-redefinition-refused.md):
 SICP refines procedures by defining them again, which Turmeric `main`
-refuses. The fix, and the one for `eq?`, are on a Turmeric branch; once they
+refuses. "Proper tail calls" is the `amb` evaluator's continuation-passing
+style, which grew the stack until it overflowed: through procedure values
+under the interpreter
+([report](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/turi-tail-call-through-procedure-value-grows-stack.md)),
+and through a call to a top-level procedure when compiled
+([report](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-tail-call-through-static-call-not-proper.md)).
+The fixes, and the one for `eq?`, are on a Turmeric branch; once they
 reach `main` these runs fail with "delete the marker", which is the cue to
 delete the `.xfail` files.
 
-Next, from the plan: 4.1.5-4.1.7 (the analyzing evaluator), 4.2, 4.3 `amb`
-(with `(sicp extras)` once it is on `main`), 4.4 the query system, 5.2 the
+Each chapter-4 evaluator runs its own driver loop on the book's sessions,
+fed from a string in the program through `current-input-port`.
+
+Next, from the plan: 4.4 the query system, 5.2 the
 register-machine simulator and 5.5 the compiler. The picture language of
 2.2.4 is out of scope.
