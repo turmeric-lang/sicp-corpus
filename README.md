@@ -79,6 +79,7 @@ different compilers, so compare the sha before blaming a change here.
 | 4.2 Lazy Evaluation (the lazy evaluator, 4.2.3's lazy lists) | xfail on Turmeric `main`: redefinition |
 | 4.3 Nondeterministic Computing (the `amb` evaluator and its examples) | xfail on Turmeric `main`: redefinition, proper tail calls |
 | 4.4 Logic Programming (the query system on the Microshaft data base) | passing |
+| 5.2 A Register-Machine Simulator (with 5.1's gcd, factorial and Fibonacci machines) | xfail on Turmeric `main`: redefinition |
 
 "Redefinition" is
 [r7rs-program-redefinition-refused](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-program-redefinition-refused.md):
@@ -96,6 +97,5 @@ delete the `.xfail` files.
 Each chapter-4 evaluator runs its own driver loop on the book's sessions,
 fed from a string in the program through `current-input-port`.
 
-Next, from the plan: 5.2 the
-register-machine simulator and 5.5 the compiler. The picture language of
+Next, from the plan: 5.5 the compiler. The picture language of
 2.2.4 is out of scope.
