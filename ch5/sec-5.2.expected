@@ -1,0 +1,16 @@
+done
+done
+done
+2
+2
+
+(total-pushes = 0 maximum-depth = 0)  (factorial 1 = 1)
+(total-pushes = 8 maximum-depth = 8)  (factorial 5 = 120)
+(total-pushes = 18 maximum-depth = 18)  (factorial 10 = 3628800)
+(total-pushes = 38 maximum-depth = 38)  (factorial 20 = 2432902008176640000)
+
+(total-pushes = 0 maximum-depth = 0)  (fib 1 = 1)
+(total-pushes = 4 maximum-depth = 2)  (fib 2 = 1)
+(total-pushes = 352 maximum-depth = 18)  (fib 10 = 55)
+(total-pushes = 43780 maximum-depth = 38)  (fib 20 = 6765)
+2

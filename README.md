@@ -50,6 +50,8 @@ failure.
 - `<section>.xfail` -- the program is blocked on an open Turmeric report; the
   first line names it. A mismatch passes as xfail, and a match fails with
   "delete the marker", so the day the fix lands the marker comes out.
+  `<section>.xfail-compiled` / `.xfail-interpreted` do the same for one back
+  end, when the blocking report is that back end's.
 - `<section>.compiled-only` / `.interp-only` -- skip the other back end; the
   first line says why.
 - No exercise solutions. Exercises are the reader's work.
@@ -75,16 +77,31 @@ different compilers, so compare the sha before blaming a change here.
 | 3.3 Modeling with Mutable Data | xfail on Turmeric `main`: redefinition, `eq?` on internal procedures |
 | 3.4 Concurrency | passing (invariants, not exact output) |
 | 3.5 Streams | xfail on Turmeric `main`: redefinition |
-| 4.1 The Metacircular Evaluator (4.1.1-4.1.4), as printed | passing |
+| 4.1 The Metacircular Evaluator (4.1.1-4.1.7, with the analyzing evaluator) | xfail on Turmeric `main`: redefinition |
+| 4.2 Lazy Evaluation (the lazy evaluator, 4.2.3's lazy lists) | xfail on Turmeric `main`: redefinition |
+| 4.3 Nondeterministic Computing (the `amb` evaluator and its examples) | compiled: passing; interpreted: xfail on Turmeric `main`, proper tail calls |
+| 4.4 Logic Programming (the query system on the Microshaft data base) | passing |
+| 5.2 A Register-Machine Simulator (with 5.1's gcd, factorial and Fibonacci machines) | xfail on Turmeric `main`: redefinition |
+| 5.5 Compilation (the compiler, on 5.4's explicit-control evaluator) | passing |
 
 "Redefinition" is
 [r7rs-program-redefinition-refused](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-program-redefinition-refused.md):
 SICP refines procedures by defining them again, which Turmeric `main`
-refuses. The fix, and the one for `eq?`, are on a Turmeric branch; once they
+refuses. "Proper tail calls" is the `amb` evaluator's continuation-passing
+style, which grew the stack until it overflowed: through procedure values
+under the interpreter
+([report](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/turi-tail-call-through-procedure-value-grows-stack.md)),
+and through a call to a top-level procedure when compiled
+([report](https://github.com/turmeric-lang/turmeric/blob/claude/r7rs-srfi-plan-execution-n85j1j/docs/archive/r7rs-tail-call-through-static-call-not-proper.md)).
+Compiled, `main`'s 1 GiB program stack gives 4.3 room without the second fix.
+The fixes, and the one for `eq?`, are on a Turmeric branch; once they
 reach `main` these runs fail with "delete the marker", which is the cue to
 delete the `.xfail` files.
 
-Next, from the plan: 4.1.5-4.1.7 (the analyzing evaluator), 4.2, 4.3 `amb`
-(with `(sicp extras)` once it is on `main`), 4.4 the query system, 5.2 the
-register-machine simulator and 5.5 the compiler. The picture language of
-2.2.4 is out of scope.
+Each chapter-4 evaluator runs its own driver loop on the book's sessions,
+fed from a string in the program through `current-input-port`.
+
+Not covered: 5.3 (storage allocation; its code is register-machine
+fragments with nothing of its own to run) and 5.4 on its own (it runs as
+part of 5.5, with the book's interpreted results checked there). The
+picture language of 2.2.4 is out of scope.
